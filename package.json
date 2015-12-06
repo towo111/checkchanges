@@ -1,0 +1,14 @@
+{
+  "name": "checkchanges",
+  "version": "1.0.0",
+  "description": "Checks for changes in the filesystem and executes a command.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "bin": {
+    "checkchanges": "index.js"
+  },
+  "author": "Tobias Wohlfarth",
+  "license": "ISC"
+}
