@@ -36,6 +36,11 @@ for (var i = 2; i < process.argv.length - 1; i++) {
 	fs.watch(process.argv[i], { persistent: true, recursive: true }, function(event, filename) {
 		var now = new Date().getTime();
 
+		// Ignore scss files, because they will be compiled. After that you should reload.
+		if (filename.indexOf("scss") > -1) {
+			return;
+		}
+
 		if (requests == 0) {
 			requests = 1;
 			requestTime = now;
