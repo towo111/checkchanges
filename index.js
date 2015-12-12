@@ -20,12 +20,20 @@ var code = '\
     tell application "Safari"\n\
 	set winlist to every window\n\
 	repeat with win in winlist\n\
-		set tablist to every tab of win\n\
-		repeat with t in tablist\n\
-			if "localhost" is in (URL of t as string) then\n\
-				tell t to do javascript "window.location.reload()"\n\
-			end if\n\
-		end repeat\n\
+		try\n\
+			set tablist to every tab of win\n\
+			repeat with t in tablist\n\
+				try\n\
+					if "localhost" is in (URL of t as string) then\n\
+						tell t to do javascript "window.location.reload()"\n\
+					end if\n\
+				on error errStr number errorNumber\n\
+					-- Do Nothing\n\
+				end try\n\
+			end repeat\n\
+		on error errStr number errorNumber\n\
+			-- Do Nothing\n\
+		end try\n\
 	end repeat\n\
     end tell\n\
     ';
